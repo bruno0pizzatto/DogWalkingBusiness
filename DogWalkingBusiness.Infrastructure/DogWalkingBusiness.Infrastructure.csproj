@@ -10,4 +10,14 @@
     <Folder Include="DB_Script\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DogWalkingBusiness.Application\DogWalkingBusiness.Application.csproj" />
+    <ProjectReference Include="..\DogWalkingBusiness.Domain\DogWalkingBusiness.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
