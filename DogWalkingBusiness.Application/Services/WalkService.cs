@@ -1,4 +1,4 @@
-﻿namespace DogWalkingBusiness.Application.Services
+﻿namespace DogWalkingBusiness.Applications.Services
 {
     public class WalkService
     {

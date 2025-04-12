@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogWalkingBusiness.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogWalkingBusiness.Infrastructure", "DogWalkingBusiness.Infrastructure\DogWalkingBusiness.Infrastructure.csproj", "{A349C5C7-B302-4E7A-996D-4122510E88B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogWalkingBusiness.Application", "DogWalkingBusiness.Application\DogWalkingBusiness.Application.csproj", "{85E89D96-136A-4C33-9BBC-95AC4BA03213}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogWalkingBusiness.Applications", "DogWalkingBusiness.Application\DogWalkingBusiness.Applications.csproj", "{85E89D96-136A-4C33-9BBC-95AC4BA03213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

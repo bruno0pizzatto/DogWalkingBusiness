@@ -1,6 +1,6 @@
-﻿using DogWalkingBusiness.Application.DTOs;
+﻿using DogWalkingBusiness.Applications.DTOs;
 
-namespace DogWalkingBusiness.Application.Interfaces
+namespace DogWalkingBusiness.Applications.Interfaces
 {
     public interface IWalkService
     {

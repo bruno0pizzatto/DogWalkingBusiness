@@ -1,5 +1,5 @@
-﻿using DogWalkingBusiness.Application.DTOs;
-using DogWalkingBusiness.Application.Interfaces;
+﻿using DogWalkingBusiness.Applications.DTOs;
+using DogWalkingBusiness.Applications.Interfaces;
 using DogWalkingBusiness.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,4 +1,4 @@
-﻿namespace DogWalkingBusiness.Application.DTOs
+﻿namespace DogWalkingBusiness.Applications.DTOs
 {
     public class DogDTO
     {

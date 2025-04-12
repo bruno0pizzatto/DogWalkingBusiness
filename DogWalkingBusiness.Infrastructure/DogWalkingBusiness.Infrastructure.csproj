@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DogWalkingBusiness.Application\DogWalkingBusiness.Application.csproj" />
+    <ProjectReference Include="..\DogWalkingBusiness.Application\DogWalkingBusiness.Applications.csproj" />
     <ProjectReference Include="..\DogWalkingBusiness.Domain\DogWalkingBusiness.Domain.csproj" />
   </ItemGroup>
 
