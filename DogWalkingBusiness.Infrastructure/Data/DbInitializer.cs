@@ -11,16 +11,18 @@ namespace DogWalkingBusiness.Infrastructure.Data
             Client clientBruno = new Client("Bruno Pizzatto", "5511944787878");
 
             context.Clients.Add(clientBruno);
+            context.SaveChanges();
 
             clientBruno = context.Clients.Where(x => x.Name.Equals(clientBruno.Name)).FirstOrDefault();
 
-            Dog dogWhey = new Dog("Whey", "Lhasa", 3, clientBruno.Id);
-            Dog dogPipoca = new Dog("Pipoca", "Cur", 3, clientBruno.Id);
-            Dog dogBranca = new Dog("Branca", "Poodle", 3, clientBruno.Id);
+            Dog dogWhey = new Dog("Whey", "Lhasa", 7, clientBruno.Id);
+            Dog dogPipoca = new Dog("Pipoca", "Cur", 4, clientBruno.Id);
+            Dog dogBranca = new Dog("Branca", "Poodle", 14, clientBruno.Id);
 
             context.Dogs.Add(dogWhey);
             context.Dogs.Add(dogPipoca);
             context.Dogs.Add(dogBranca);
+            context.SaveChanges();
 
             dogWhey = context.Dogs.Where(x => x.Name.Equals(dogWhey.Name)).FirstOrDefault();
             dogPipoca = context.Dogs.Where(x => x.Name.Equals(dogPipoca.Name)).FirstOrDefault();

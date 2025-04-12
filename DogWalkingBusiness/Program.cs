@@ -22,6 +22,12 @@ namespace DogWalkingBusiness
             ConfigureServices(services);
             ServiceProvider = services.BuildServiceProvider();
 
+            using (var scope = ServiceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<DogWalkingDbContext>();
+                context.Database.Migrate();
+                DbInitializer.Seed(context);
+            }
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
@@ -41,15 +47,10 @@ namespace DogWalkingBusiness
             //services.AddScoped<IWalkService, WalkService>();
 
             services.AddScoped<LoginForm>();
-            //services.AddScoped<MainForm>();
-            //services.AddScoped<WalkForm>();
-
-            using (var scope = ServiceProvider.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<DogWalkingDbContext>();
-                context.Database.Migrate();
-                DbInitializer.Seed(context);
-            }
+            services.AddScoped<MainForm>();
+            services.AddScoped<ClientForm>();
+            services.AddScoped<DogForm>();
+            services.AddScoped<WalkForm>();           
         }
 
         private static IConfiguration Configuration =>
