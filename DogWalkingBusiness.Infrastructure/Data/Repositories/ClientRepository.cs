@@ -14,10 +14,10 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<ClientDto>> GetAllClientsAsync()
+        public async Task<IEnumerable<ClientDTO>> GetAllAsync()
         {
             return await _context.Clients
-                .Select(c => new ClientDto
+                .Select(c => new ClientDTO
                 {
                     Id = c.Id,
                     Name = c.Name,
@@ -25,12 +25,12 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
                 }).ToListAsync();
         }
 
-        public async Task<ClientDto> GetClientByIdAsync(int id)
+        public async Task<ClientDTO> GetByIdAsync(int id)
         {
             var client = await _context.Clients.FindAsync(id);
             if (client == null) return null;
 
-            return new ClientDto
+            return new ClientDTO
             {
                 Id = client.Id,
                 Name = client.Name,
@@ -38,14 +38,7 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             };
         }
 
-        public async Task AddClientAsync(ClientDto clientDto)
-        {
-            var client = new Client(clientDto.Name, clientDto.PhoneNumber);
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateClientAsync(ClientDto clientDto)
+        public async Task SaveAsync(ClientDTO clientDto)
         {
             var client = await _context.Clients.FindAsync(clientDto.Id);
             if (client != null)
@@ -53,9 +46,15 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
                 client.Update(clientDto.Name, clientDto.PhoneNumber);
                 await _context.SaveChangesAsync();
             }
-        }
+            else
+            {
+                var clientNew = new Client(clientDto.Name, clientDto.PhoneNumber);
+                _context.Clients.Add(clientNew);
+                await _context.SaveChangesAsync();
+            }
+        }      
 
-        public async Task DeleteClientAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var client = await _context.Clients.FindAsync(id);
             if (client != null)
@@ -63,6 +62,20 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
                 _context.Clients.Remove(client);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<ClientDTO>> SearchAsync(string keyword)
+        {
+            return await _context.Clients
+                .Where(x =>
+                    x.Name.Contains(keyword)
+                )
+                .Select(c => new ClientDTO
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    PhoneNumber = c.PhoneNumber
+                }).ToListAsync();
         }
     }
 }

@@ -4,10 +4,10 @@ namespace DogWalkingBusiness.Application.Interfaces
 {
     public interface IClientService
     {
-        Task<IEnumerable<ClientDto>> GetAllClientsAsync();
-        Task<ClientDto> GetClientByIdAsync(int id);
-        Task AddClientAsync(ClientDto client);
-        Task UpdateClientAsync(ClientDto client);
-        Task DeleteClientAsync(int id);
+        Task<IEnumerable<ClientDTO>> GetAllAsync();
+        Task<ClientDTO> GetByIdAsync(int id);
+        Task SaveAsync(ClientDTO client);        
+        Task DeleteAsync(int id);
+        Task<IEnumerable<ClientDTO>> SearchAsync(string keyword);
     }
 }
