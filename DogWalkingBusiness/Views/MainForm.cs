@@ -14,13 +14,15 @@ namespace DogWalkingBusiness.WinFormsUI.Views
     public partial class MainForm: Form
     {
         private readonly IClientService _clientService;
-        private readonly IDogService _dogService;
+        //private readonly IDogService _dogService;
 
-        public MainForm(IClientService clientService, IDogService dogService)
+        public MainForm(IClientService clientService/*, IDogService dogService*/)
         {
             InitializeComponent();
             _clientService = clientService;
-            _dogService = dogService;
+            //_dogService = dogService;
+
+            this.Load += MainForm_Load;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)

@@ -1,6 +1,9 @@
 using DogWalkingBusiness.Applications.Interfaces;
+using DogWalkingBusiness.Applications.Mappings;
 using DogWalkingBusiness.Applications.Services;
+using DogWalkingBusiness.Domain.Repository;
 using DogWalkingBusiness.Infrastructure.Data;
+using DogWalkingBusiness.Infrastructure.Data.Repositories;
 using DogWalkingBusiness.WinFormsUI.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,9 +43,13 @@ namespace DogWalkingBusiness
             services.AddDbContext<DogWalkingDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddAutoMapper(typeof(MappingProfile).Assembly);
+            services.AddScoped<IClientRepository, ClientRepository>();
+            //services.AddScoped<IDogRepository, DogRepository>();
+            //services.AddScoped<IWalkRepository, WalkRepository>();
 
-            //services.AddScoped<IClientService, ClientService>();
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
+            services.AddScoped<IClientService, ClientService>();
             //services.AddScoped<IDogService, DogService>();
             //services.AddScoped<IWalkService, WalkService>();
 

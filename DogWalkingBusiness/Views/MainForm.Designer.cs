@@ -29,31 +29,16 @@
         private void InitializeComponent()
         {
             dataGridViewClients = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            ClientName = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewClients
             // 
             dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClients.Columns.AddRange(new DataGridViewColumn[] { Id, ClientName });
-            dataGridViewClients.Location = new Point(29, 32);
+            dataGridViewClients.Location = new Point(29, 86);
             dataGridViewClients.Name = "dataGridViewClients";
-            dataGridViewClients.Size = new Size(736, 394);
+            dataGridViewClients.Size = new Size(370, 340);
             dataGridViewClients.TabIndex = 0;
-            // 
-            // Id
-            // 
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            // 
-            // Name
-            // 
-            ClientName.HeaderText = "Name";
-            ClientName.Name = "Name";
-            ClientName.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -70,7 +55,5 @@
         #endregion
 
         private DataGridView dataGridViewClients;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn ClientName;
     }
 }
