@@ -28,12 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MainForm";
+            dataGridViewClients = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
+            ClientName = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
+            SuspendLayout();
+            // 
+            // dataGridViewClients
+            // 
+            dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewClients.Columns.AddRange(new DataGridViewColumn[] { Id, ClientName });
+            dataGridViewClients.Location = new Point(29, 32);
+            dataGridViewClients.Name = "dataGridViewClients";
+            dataGridViewClients.Size = new Size(736, 394);
+            dataGridViewClients.TabIndex = 0;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            // 
+            // Name
+            // 
+            ClientName.HeaderText = "Name";
+            ClientName.Name = "Name";
+            ClientName.ReadOnly = true;
+            // 
+            // MainForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(dataGridViewClients);
+            Name = "MainForm";
+            Text = "Main";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClients).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView dataGridViewClients;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn ClientName;
     }
 }

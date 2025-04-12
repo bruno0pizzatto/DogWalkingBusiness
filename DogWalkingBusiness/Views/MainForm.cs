@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DogWalkingBusiness.Applications.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,25 @@ namespace DogWalkingBusiness.WinFormsUI.Views
 {
     public partial class MainForm: Form
     {
-        public MainForm()
+        private readonly IClientService _clientService;
+        private readonly IDogService _dogService;
+
+        public MainForm(IClientService clientService, IDogService dogService)
         {
             InitializeComponent();
+            _clientService = clientService;
+            _dogService = dogService;
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            await LoadDataAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            var clients = await _clientService.GetAllAsync();
+            dataGridViewClients.DataSource = clients;
         }
     }
 }

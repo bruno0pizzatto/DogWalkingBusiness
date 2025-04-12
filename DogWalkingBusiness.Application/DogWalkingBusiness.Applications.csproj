@@ -10,4 +10,12 @@
     <Folder Include="Mappings\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DogWalkingBusiness.Domain\DogWalkingBusiness.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

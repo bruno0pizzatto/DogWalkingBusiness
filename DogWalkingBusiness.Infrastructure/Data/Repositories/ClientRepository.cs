@@ -1,11 +1,10 @@
-﻿using DogWalkingBusiness.Applications.DTOs;
-using DogWalkingBusiness.Applications.Interfaces;
-using DogWalkingBusiness.Domain.Entities;
+﻿using DogWalkingBusiness.Domain.Entities;
+using DogWalkingBusiness.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace DogWalkingBusiness.Infrastructure.Data.Repositories
 {
-    public class ClientRepository : IClientService
+    public class ClientRepository : IClientRepository
     {
         private readonly DogWalkingDbContext _context;
 
@@ -14,42 +13,30 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<ClientDTO>> GetAllAsync()
+        public async Task<IEnumerable<Client>> GetAllAsync()
         {
-            return await _context.Clients
-                .Select(c => new ClientDTO
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    PhoneNumber = c.PhoneNumber
-                }).ToListAsync();
+            return await _context.Clients.ToListAsync();
         }
 
-        public async Task<ClientDTO> GetByIdAsync(int id)
+        public async Task<Client> GetByIdAsync(int id)
         {
             var client = await _context.Clients.FindAsync(id);
             if (client == null) return null;
 
-            return new ClientDTO
-            {
-                Id = client.Id,
-                Name = client.Name,
-                PhoneNumber = client.PhoneNumber
-            };
+            return client;
         }
 
-        public async Task SaveAsync(ClientDTO clientDto)
+        public async Task SaveAsync(Client client)
         {
-            var client = await _context.Clients.FindAsync(clientDto.Id);
-            if (client != null)
+            var clientExists = await _context.Clients.FindAsync(client.Id);
+            if (clientExists != null)
             {
-                client.Update(clientDto.Name, clientDto.PhoneNumber);
+                clientExists = client;
                 await _context.SaveChangesAsync();
             }
             else
-            {
-                var clientNew = new Client(clientDto.Name, clientDto.PhoneNumber);
-                _context.Clients.Add(clientNew);
+            {               
+                _context.Clients.Add(client);
                 await _context.SaveChangesAsync();
             }
         }      
@@ -64,18 +51,12 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             }
         }
 
-        public async Task<IEnumerable<ClientDTO>> SearchAsync(string keyword)
+        public async Task<IEnumerable<Client>> SearchAsync(string keyword)
         {
             return await _context.Clients
                 .Where(x =>
                     x.Name.Contains(keyword)
-                )
-                .Select(c => new ClientDTO
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    PhoneNumber = c.PhoneNumber
-                }).ToListAsync();
+                ).ToListAsync();
         }
     }
 }
