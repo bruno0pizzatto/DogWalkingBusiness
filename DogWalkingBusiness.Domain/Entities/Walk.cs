@@ -10,8 +10,14 @@ namespace DogWalkingBusiness.Domain.Entities
 
         public Dog Dog { get; set; }
 
-        public Walk(int dogId, DateTime walkDate, TimeSpan duration)
+        public void Update(int dogId, DateTime walkDate, TimeSpan duration)
         {          
+            DogId = dogId;
+            WalkDate = walkDate;
+            Duration = duration;
+        }
+        public Walk(int dogId, DateTime walkDate, TimeSpan duration)
+        {
             DogId = dogId;
             WalkDate = walkDate;
             Duration = duration;

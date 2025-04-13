@@ -18,7 +18,7 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             return await _context.Walks.ToListAsync();
         }
 
-        public async Task<IEnumerable<Walk>> GetDogIdAsync(int dogId)
+        public async Task<IEnumerable<Walk>> GetByDogIdAsync(int dogId)
         {
             return await _context.Walks
                 .Where(x =>
@@ -39,12 +39,13 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             var walkExists = await _context.Walks.FindAsync(walk.Id);
             if (walkExists != null)
             {
-                walkExists = walk;
+                walkExists.Update(walk.DogId, walk.WalkDate, walk.Duration);
+                _context.Walks.Update(walkExists);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                _context.Dogs.Add(dog);
+                _context.Walks.Add(walk);
                 await _context.SaveChangesAsync();
             }
         }

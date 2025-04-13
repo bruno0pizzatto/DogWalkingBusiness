@@ -44,14 +44,14 @@ namespace DogWalkingBusiness
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IClientRepository, ClientRepository>();
-            //services.AddScoped<IDogRepository, DogRepository>();
-            //services.AddScoped<IWalkRepository, WalkRepository>();
+            services.AddScoped<IDogRepository, DogRepository>();
+            services.AddScoped<IWalkRepository, WalkRepository>();
 
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
             services.AddScoped<IClientService, ClientService>();
-            //services.AddScoped<IDogService, DogService>();
-            //services.AddScoped<IWalkService, WalkService>();
+            services.AddScoped<IDogService, DogService>();
+            services.AddScoped<IWalkService, WalkService>();
 
             services.AddScoped<LoginForm>();
             services.AddScoped<MainForm>();

@@ -11,8 +11,16 @@ namespace DogWalkingBusiness.Domain.Entities
 
         public Client Client { get; set; }
 
-        public Dog(string name, string breed, int age, int clientId)
+        public void Update(string name, string breed, int age, int clientId)
         {            
+            Name = name;
+            Breed = breed;
+            Age = age;
+            ClientId = clientId;
+        }
+
+        public Dog(string name, string breed, int age, int clientId)
+        {
             Name = name;
             Breed = breed;
             Age = age;

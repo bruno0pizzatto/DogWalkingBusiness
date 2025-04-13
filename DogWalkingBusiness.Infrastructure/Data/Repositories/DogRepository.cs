@@ -1,6 +1,7 @@
 ﻿using DogWalkingBusiness.Domain.Entities;
 using DogWalkingBusiness.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace DogWalkingBusiness.Infrastructure.Data.Repositories
 {
@@ -18,12 +19,11 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             return await _context.Dogs.ToListAsync();
         }
 
-        public async Task<IEnumerable<Dog>> GetByClientIdAsync(int clientId)
+        public IQueryable<Dog> GetByClientIdAsync(int clientId)
         {
-            return await _context.Dogs
-                .Where(x =>
+            return _context.Dogs.Where(x =>
                     x.ClientId == clientId
-                ).ToListAsync();
+                ).AsQueryable(); 
         }
 
         public async Task<Dog> GetByIdAsync(int id)
@@ -39,7 +39,8 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             var dogExists = await _context.Dogs.FindAsync(dog.Id);
             if (dogExists != null)
             {
-                dogExists = dog;
+                dogExists.Update(dog.Name, dog.Breed, dog.Age, dog.ClientId);
+                _context.Update(dogExists);
                 await _context.SaveChangesAsync();
             }
             else

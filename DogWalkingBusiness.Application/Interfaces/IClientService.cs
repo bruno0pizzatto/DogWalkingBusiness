@@ -6,8 +6,8 @@ namespace DogWalkingBusiness.Applications.Interfaces
     {
         Task<IEnumerable<ClientDTO>> GetAllAsync();
         //Task<ClientDTO> GetByIdAsync(int id);
-        //Task SaveAsync(ClientDTO client);        
-        //Task DeleteAsync(int id);
-        //Task<IEnumerable<ClientDTO>> SearchAsync(string keyword);
+        Task SaveAsync(ClientDTO client);        
+        Task DeleteAsync(int id);
+        Task<IEnumerable<ClientDTO>> SearchAsync(string keyword);
     }
 }

@@ -31,7 +31,8 @@ namespace DogWalkingBusiness.Infrastructure.Data.Repositories
             var clientExists = await _context.Clients.FindAsync(client.Id);
             if (clientExists != null)
             {
-                clientExists = client;
+                clientExists.Update(client.Name, client.PhoneNumber);
+                _context.Clients.Update(clientExists);
                 await _context.SaveChangesAsync();
             }
             else
