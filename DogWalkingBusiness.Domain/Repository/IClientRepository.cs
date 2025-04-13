@@ -8,5 +8,6 @@ namespace DogWalkingBusiness.Domain.Repository
         Task<Client> GetByIdAsync(int id);
         Task SaveAsync(Client client);        
         Task DeleteAsync(int id);
+        Task<IEnumerable<Client>> SearchAsync(string keyword);
     }
 }
